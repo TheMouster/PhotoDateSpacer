@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define Droplet_TargetDir=$(var.Droplet.TargetDir)?>
+  <Product Id="*" Name="Photo Date Spacer" Language="1033" Version="1.0.0.0" Manufacturer="Classified Developments" UpgradeCode="79739AE0-AAC3-455C-A0B7-F2A31CCF8612">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate />
+
+    <Feature Id="ProductFeature" Title="Installer" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="PhotoDateSpacer" />
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+      <!-- <Component Id="ProductComponent"> -->
+      <!-- TODO: Insert files, registry keys, and other resources here. -->
+      <!-- </Component> -->
+      
+      <Component Id="EXIFLibrary.dll" Guid="d070b269-8ae9-4553-8a2a-ae438eff620d">
+        <File Id="EXIFLibrary.dll" Name="EXIFLibrary.dll" Source="$(var.Droplet_TargetDir)EXIFLibrary.dll" />
+      </Component>
+      <Component Id="PhotoDateSpacerr.exe" Guid="3acfb121-d987-45e0-b0e4-02db6f990200">
+        <File Id="PhotoDateSpacer.exe" Name="PhotoDateSpacer.exe" Source="$(var.Droplet_TargetDir)PhotoDateSpacer.exe" />
+      </Component>
+      <Component Id="PhotoDateSpacer.exe.config" Guid="cf31a627-8bd0-42b3-af29-24d8bd509a2d">
+        <File Id="PhotoDateSpacer.exe.config" Name="PhotoDateSpacer.exe.config" Source="$(var.Droplet_TargetDir)PhotoDateSpacer.exe.config" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
