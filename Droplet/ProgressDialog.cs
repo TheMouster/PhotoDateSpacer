@@ -33,8 +33,8 @@ namespace PhotoDateSpacer
 			const Int32 FIRST = 0;
 			Int32 LAST = filePathsList.Count - 1;
 
-			ExifFile firstImage = ExifFile.Read(filePathsList[FIRST]);
-			ExifFile lastImage = ExifFile.Read(filePathsList[LAST]);
+			ImageFile firstImage = ImageFile.FromFile(filePathsList[FIRST]);
+			ImageFile lastImage = ImageFile.FromFile(filePathsList[LAST]);
 			DateTime firstFileDigitisation, lastFileDigitisation, newFileDigitisation;
 			firstFileDigitisation = (DateTime)firstImage.Properties[ExifTag.DateTimeDigitized].Value;
 			lastFileDigitisation = (DateTime)lastImage.Properties[ExifTag.DateTimeDigitized].Value;

@@ -9,7 +9,7 @@ namespace PhotoDateSpacer
 	{
 		public static void ProcessImage(String filePath, DateTime newDateTime)
 		{
-			ExifFile image = ExifFile.Read(filePath);
+			ImageFile image = ImageFile.FromFile(filePath);
 
 			//Set the EXIF date/time values in the image and save it.
 			try
